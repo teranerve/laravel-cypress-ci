@@ -27,37 +27,43 @@ RUN apt-get upgrade -yq
 RUN apt-get update && apt-get install -yq --fix-missing libgd-tools
 # Install PHP 
 RUN apt-get update && apt-get install -yq --fix-missing \
-    php7.2 \
-    php7.2-bcmath \
-    php7.2-bz2  \
-    php7.2-cli \
-    php7.2-common \
-    php7.2-curl \
-    php7.2-fpm \
-    php7.2-gd \
-    php7.2-gmp \
-    php7.2-imap \
-    php7.2-interbase \
-    php7.2-intl \
-    php7.2-json \
-    php7.2-ldap \
-    php7.2-mbstring \
-    php7.2-mysql \
-    php7.2-opcache \
-    php7.2-pgsql \
-    php7.2-phpdbg \
-    php7.2-pspell \
-    php7.2-readline \
-    php7.2-recode \
-    php7.2-snmp \
-    php7.2-soap \
-    php7.2-sqlite3 \
-    php7.2-sybase \
-    php7.2-tidy \
-    php7.2-xml \
-    php7.2-xmlrpc \
-    php7.2-zip \
-    php7.2-xsl \
+    php7.3 \
+    php7.3-bcmath \
+    php7.3-bz2 \
+    php7.3-cgi \
+    php7.3-cli \
+    php7.3-common \
+    php7.3-curl \
+    php7.3-dba \
+    php7.3-enchant \
+    php7.3-fpm \
+    php7.3-gd \
+    php7.3-gmp \
+    php7.3-imap \
+    php7.3-interbase \
+    php7.3-intl \
+    php7.3-json \
+    php7.3-ldap \
+    php7.3-mbstring \
+    php7.3-mysql \
+    php7.3-odbc \
+    php7.3-opcache \
+    php7.3-pgsql \
+    php7.3-phpdbg \
+    php7.3-propro \
+    php7.3-pspell \
+    php7.3-raphf \
+    php7.3-readline \
+    php7.3-recode \
+    php7.3-snmp \
+    php7.3-soap \
+    php7.3-sqlite3 \
+    php7.3-sybase \
+    php7.3-tidy \
+    php7.3-xml \
+    php7.3-xmlrpc \
+    php7.3-zip \
+    php7.3-xsl \
     php-geoip \
     php-mongodb\
     php-redis \
@@ -76,15 +82,14 @@ RUN apt-get update && apt-get install -yq --fix-missing \
     php-stomp \
     php-ds \
     php-sass \
-    php-lua \
     php-geos \
     php-xdebug php-imagick imagemagick nginx
 
-RUN update-alternatives --set php /usr/bin/php7.2
-RUN update-alternatives --set phar /usr/bin/phar7.2
-RUN update-alternatives --set phar.phar /usr/bin/phar.phar7.2
-# RUN update-alternatives --set phpize /usr/bin/phpize7.2
-# RUN update-alternatives --set php-config /usr/bin/php-config7.2
+RUN update-alternatives --set php /usr/bin/php7.3
+RUN update-alternatives --set phar /usr/bin/phar7.3
+RUN update-alternatives --set phar.phar /usr/bin/phar.phar7.3
+# RUN update-alternatives --set phpize /usr/bin/phpize7.3
+# RUN update-alternatives --set php-config /usr/bin/php-config7.3
 RUN apt-get update && apt-get install -yq --fix-missing mc lynx mysql-client bzip2 make g++
 
 # Install Redis, Memcached, Beanstalk
@@ -166,8 +171,9 @@ ADD configs/supervisord.conf /etc/supervisor/supervisord.conf
 
 ADD configs/nginx-default-site /etc/nginx/sites-available/default 
 
-
 RUN npm set progress=false
+
+RUN mkdir /run/php
 
 VOLUME [ "/var/log/supervisor" ]
 
@@ -193,4 +199,5 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
           org.label-schema.version=$VERSION \
           org.label-schema.schema-version="1.0.0"
 
-CMD ["php-fpm7.2", "-F"]
+
+CMD ["php-fpm7.3", "-F"]
