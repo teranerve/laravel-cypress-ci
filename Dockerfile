@@ -10,6 +10,10 @@ ENV CHROMEDRIVER_PORT 9515
 
 ENV TMPDIR=/tmp
 
+# Cypress dependencies
+RUN apt update && \
+    apt install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb -y --no-install-recommends
+
 RUN apt-get update && apt-get install -yq --fix-missing apt-utils netcat-openbsd
 RUN apt-get update && apt-get install -yq --fix-missing language-pack-en-base
 ENV LC_ALL=en_US.UTF-8
