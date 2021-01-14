@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-apk --update --no-cache add \
+apt-get install -yq \
     libgtk2.0-0 \
     libgtk-3-0 \
     libgbm-dev \
