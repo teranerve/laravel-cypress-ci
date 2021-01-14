@@ -32,6 +32,7 @@ RUN chmod +x /tmp/*.sh
 
 # Install2
 RUN bash ./packages.sh \
+  && bash ./chromium.sh \
   && bash ./cypress.sh \
   && bash ./extensions.sh \
   && bash ./node.sh \
